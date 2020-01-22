@@ -16,16 +16,16 @@ public class JsonUtils {
         Sandwich sandwich = new Sandwich();
         try {
             obj = new JSONObject(json);
-            sandwich.setMainName(obj.getJSONObject("name").getString("mainName"));
+            sandwich.setMainName(obj.getJSONObject("name").optString("mainName"));
             JSONArray arrAlsoKnownAs = obj.getJSONObject("name").getJSONArray("alsoKnownAs");
             List<String> alsoKnownAs = new ArrayList<String>();
             for(int i = 0; i < arrAlsoKnownAs.length(); i++){
                 alsoKnownAs.add((String) arrAlsoKnownAs.get(i));
             }
             sandwich.setAlsoKnownAs(alsoKnownAs);
-            sandwich.setPlaceOfOrigin(obj.getString("placeOfOrigin"));
-            sandwich.setDescription(obj.getString("description"));
-            sandwich.setImage(obj.getString("image"));
+            sandwich.setPlaceOfOrigin(obj.optString("placeOfOrigin"));
+            sandwich.setDescription(obj.optString("description"));
+            sandwich.setImage(obj.optString("image"));
             JSONArray arrIngredients = obj.getJSONArray("ingredients");
             List<String> ingredients = new ArrayList<String>();
             for(int i = 0; i < arrIngredients.length(); i++){
